@@ -26,7 +26,7 @@ php artisan migrate
 ```sh
 php artisan db:seed
 ```
-This will seed the database with a list of projects for easy testing
+The above command will seed the database with a list of projects for easy testing
 
 ```sh
 npm install
