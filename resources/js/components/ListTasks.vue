@@ -118,9 +118,9 @@ export default {
             this.$router.push('task-form');
         },
         navigateToUpdateTask(task) {
+            localStorage.setItem('task_id', task.id)
             this.$router.push({
-                name: 'TaskForm',
-                params: { id: task.id }
+                name: 'TaskForm'
             });
         }
     },
@@ -150,6 +150,12 @@ export default {
             .catch(error => {
                 console.log(error)
             })
+    },
+    mounted() {
+        const projectId = localStorage.getItem('project_id');
+        if (projectId) {
+            this.selectedProject = projectId;
+        }
     }
 }
 </script>

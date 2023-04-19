@@ -43,9 +43,6 @@ export default {
         }
     },
     async mounted() {
-        if (this.$route.params.id) {
-            localStorage.setItem('task_id', this.$route.params.id)
-        }
         let taskId = localStorage.getItem('task_id');
         if (taskId) {
             await axios.get(`tasks/${taskId}`)
@@ -67,6 +64,7 @@ export default {
             if (taskId) {
                 await axios.patch(`tasks/${taskId}`, this.formData)
                     .then(response => {
+                        localStorage.setItem('project_id', this.formData.project_id)
                         alert('Task updated successfully')
                         this.$router.push('/')
                     })
@@ -77,6 +75,7 @@ export default {
             } else {
                 await axios.post('tasks', this.formData)
                     .then(response => {
+                        localStorage.setItem('project_id', this.formData.project_id)
                         alert('Task created successfully')
                         this.$router.push('/')
                     })
